@@ -1,0 +1,59 @@
+body {
+	/*font-family: 'Arsenal', sans-serif;*/
+	font-family: 'Slabo 27px', serif;
+	/*font-family: 'Playfair Display', serif;*/
+}
+
+.head-normal {
+	/*font-family: 'Kranky', cursive; no */
+	/*font-family: 'Vast Shadow', cursive; no*/
+	/*font-family: 'Life Savers', cursive; maybe*/
+	/*font-family: 'Amatica SC', cursive;*/
+	/*font-family: 'Ribeye Marrow', cursive; maybe*/
+	/*font-family: 'Spirax', cursive; maybe*/
+	/*font-family: 'Geostar', cursive; maybe*/
+	/*font-family: 'Londrina Sketch', cursive; maybe*/
+	font-family: 'Lobster Two', cursive;
+	text-align: center;
+}
+
+.head-retro {
+	/*font-family: 'Life Savers', cursive; maybe*/
+	/*font-family: 'Amatica SC', cursive;*/
+	/*font-family: 'Ribeye Marrow', cursive; maybe*/
+	/*font-family: 'Spirax', cursive; maybe*/
+	/*font-family: 'Geostar', cursive; maybe*/
+	font-family: 'Londrina Sketch', cursive;
+	text-align: center;
+}
+
+.old {
+	font-family: 'VT323', monospace;
+}
+
+.container {
+	/*min-width: 200px;*/
+	max-width: 800px;
+	/*min-height: 120px;*/
+	margin-left: auto;
+	margin-right: auto;
+	background-color: white;
+}
+
+.container img {
+	width: 40%;
+	height: auto;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.note {
+	font-size: 10pt;
+}
+
+.curry {
+	background-image: url("Resources/curry_bg.jpg");
+	background-repeat: repeat;
+	background-size: 80px auto;
+}

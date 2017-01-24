@@ -1,0 +1,8 @@
+- repairing old White Sewing Machine Company sewing machine
+- was in table
+- broken belts, expected repair to be more complicated than it was
+- presser foot was not snap-on/easily replacable, so used adapter from Ikea SY machine
+- threading machine difficulty (couldn't find manual)
+- screeching sounds, finding oil holes
+- belt was turning on hand-wheel and insconsistent machine functioning, so first thought problem with pedal and cleaned contacts, then thought problem with motor and decided to take that apart, then found motor position was adjustable
+- found bobbin winder not working, either problem with tire size, clutch, or maybe just needed oil
