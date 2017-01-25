@@ -37,6 +37,7 @@ body {
 	margin-left: auto;
 	margin-right: auto;
 	background-color: white;
+	padding: 0px 10px;
 }
 
 .container img {
@@ -57,7 +58,7 @@ body {
 }
 
 .curry {
-	background-image: url("Resources/curry_bg.jpg");
+	background-image: url("Resources/curry_background.jpg");
 	background-repeat: repeat;
 	background-size: 80px auto;
 }
