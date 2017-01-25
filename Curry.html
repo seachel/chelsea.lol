@@ -2,19 +2,74 @@
 <head>
 	<title>Curry Fan Page</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
+	<link href="https://fonts.googleapis.com/css?family=Amatica+SC|Arsenal|Geostar|Kranky|Life+Savers|Lobster+Two|Londrina+Sketch|Playfair+Display|Ribeye+Marrow|Slabo+27px|Spirax|VT323|Vast+Shadow" rel="stylesheet">
+
+<script type="text/javascript">
+
+document.onreadystatechange = function(e)
+{
+	function ToggleAudio () {
+
+		var mainAudioElement = document.querySelector("#audio-main-music");
+
+		if (mainAudioElement.paused) {
+			mainAudioElement.play();
+		} else {
+			mainAudioElement.pause();
+		}
+	}
+
+    if (document.readyState === 'complete')
+    {
+		document.querySelector("#play-main-music").addEventListener('click', ToggleAudio);
+    }
+};
+
+
+</script>
+
 </head>
 <body class="curry">
+
+<audio id="audio-main-music" loop="true">
+     <source src="Resources/Earthbound_BecauseILoveYou.mp3" type="audio/mp3" />     
+</audio>
+
 <div class="old container">
+
+<button id="play-main-music" type="button">
+	<img class="music-note" src="Resources/musicNote.png"/>
+</button>
 
 <h1 class="head-retro">Official Fanpage of Curry the Cockatiel</h1>
 
-<p>I live with a very precious/vicious cockatiel named Curry (after Haskell Curry). He enjoys millet, cuddles, and long flights around the house.</p>
+<p>I live with a very precious/vicious cockatiel named Curry (after Haskell Curry). It was love at first sight, I knew from the first day we met and he pooped on my hand that we would be great together. He enjoys millet, cuddles, and long flights around the house.</p>
 
-<img src="Resources/curry_1.jpg">
+<img src="Resources/curry_main.jpg"/>
 
-<p>He's not a big fan of going out in a harness.</p>
+<p>He looks like a scary dinosaur when he yawns.</p>
 
-<img src="Resources/curry_harness.jpg" alt="Curry in a flight harness. He hates it.">
+<img src="Resources/curry_yawn.jpg"/>
+
+<p>He's not a big fan of going out in a harness...</p>
+
+<img src="Resources/curry_harness.jpg" alt="Curry in a flight harness. He hates it."/>
+
+<p>...or having baths.</p>
+
+<img src="Resources/curry_bath.jpg">
+
+<p>He does like popcorn...</p>
+
+<img src="Resources/curry_popcorn1.jpg">
+
+<p>...and he LOOOVES to get his head scratched...</p>
+
+<img src="Resources/curry_cuddle.jpg">
+
+<p>...and is SO CUTE when he is sleeping.</p>
+
+<img src="Resources/curry_sleep.jpg">
 
 <!-- <p>He also gets mad at his reflection sometimes.</p>
 

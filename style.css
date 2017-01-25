@@ -2,6 +2,8 @@ body {
 	/*font-family: 'Arsenal', sans-serif;*/
 	font-family: 'Slabo 27px', serif;
 	/*font-family: 'Playfair Display', serif;*/
+	padding: 0px;
+	margin: 0px;
 }
 
 .head-normal {
@@ -30,6 +32,7 @@ body {
 
 .old {
 	font-family: 'VT323', monospace;
+	/*font-family: 'Arsenal', sans-serif;*/
 }
 
 .container {
@@ -37,7 +40,7 @@ body {
 	margin-left: auto;
 	margin-right: auto;
 	background-color: white;
-	padding: 0px 10px;
+	padding: 10px;
 }
 
 .container img {
@@ -55,6 +58,11 @@ body {
 
 .note {
 	font-size: 10pt;
+}
+
+img.music-note {
+	width: 40px;
+	height: auto;
 }
 
 .curry {
