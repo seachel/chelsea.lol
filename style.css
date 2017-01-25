@@ -36,7 +36,7 @@ body {
 }
 
 .container {
-	max-width: 800px;
+	max-width: 700px;
 	margin-left: auto;
 	margin-right: auto;
 	background-color: white;
@@ -62,7 +62,7 @@ body {
 
 img.music-note {
 	width: 40px;
-	height: auto;
+	height: 40px;
 }
 
 .curry {
