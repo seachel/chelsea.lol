@@ -1,0 +1,81 @@
+/*font-family: 'Roboto', sans-serif;
+font-family: 'Slabo 27px', serif;
+font-family: 'Lobster Two', cursive;*/
+
+:root {
+	--tile-height: 50px;
+	--tile-width: 50px;
+	--piece-height: 40px;
+	--piece-width: 40px;
+	--piece-bradius: 20px;
+	--board-bg: #808080; /*gray*/
+	--player-1-color: #7851A9; /*royal purple*/
+	--player-2-color: #228B22; /*forest green*/
+}
+
+body {
+	font-family: 'Slabo 27px', serif;
+	font-size: 24px;
+}
+
+h1 {
+	text-align: center;
+	font-family: 'Press Start 2P', cursive;
+}
+
+h3 {
+	font-family: 'Press Start 2P', cursive;
+}
+
+.panels {
+	display: flex;
+}
+
+.panel {
+	width: 33.33%;
+	display: block;
+	margin: auto;
+	text-align: center;
+}
+
+#board{
+	margin: 0 auto;
+}
+
+.tile {
+	border: 1px white;
+	background: var(--board-bg);
+	align: center;
+	height: var(--tile-height);
+	width: var(--tile-width);
+}
+
+.piece {
+	border: 1px red;
+	margin: auto;
+	height: var(--piece-height);
+	width: var(--piece-width);
+	border-radius: var(--piece-bradius);
+}
+
+.player-1 > .piece {
+	background: var(--player-1-color);
+}
+
+.player-2 > .piece {
+	background: var(--player-2-color);
+}
+
+.current-player {
+	padding: 10px;
+}
+
+table.score-board {
+	margin: auto;
+	border: 2px solid yellow;
+	outline: 1px solid black;
+}
+
+.score-board td {
+	padding: 0px 20px;
+}

@@ -1,0 +1,430 @@
+<html>
+<head>
+	<title>Othello</title>
+	<link rel="stylesheet" href="othello.css">
+	<link href="https://fonts.googleapis.com/css?family=Press+Start+2P|Roboto|Slabo+27px" rel="stylesheet">
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-91001708-1', 'auto');
+	  ga('send', 'pageview');
+	</script>
+</head>
+
+<body>
+
+<script type="text/javascript">
+
+/*
+correctness function runs at some regular interval? correctness design pattern?
+*/
+
+var player1 = true; 
+	
+document.onreadystatechange = function(e)
+{
+    if (document.readyState === 'complete')
+    {
+        const tiles = document.querySelectorAll('.tile');
+
+		function MakeMove() {
+			/*
+			if (player1) {
+				this.classList.toggle('player-1');
+				player1 = false;
+			} else {
+				this.classList.toggle('player2');
+				player1 = true;
+			}
+			*/
+
+			const currentPlayerPieces = document.querySelectorAll('.current-player');
+
+			if (this.classList.contains('player-1')) {
+				this.classList.remove('player-1');
+				this.classList.add('player-2');
+				player1 = false;
+			} else if (this.classList.contains('player-2')) {
+				this.classList.remove('player-2');
+				this.classList.add('player-1');
+				player1 = true;
+			} else {
+				this.classList.add('player-1');
+			}
+		}
+
+		function InitBoard() {
+			const initPlayer1 = document.querySelectorAll('.row4 > .tile.col4, .row5 > .tile.col5');
+			const initPlayer2 = document.querySelectorAll('.row4 > .tile.col5, .row5 > .tile.col4');
+
+			initPlayer1.forEach(p => p.classList.toggle('player-1'));
+			initPlayer2.forEach(p => p.classList.toggle('player-2'));
+
+			const currentPlayerPieces = document.querySelectorAll('.current-player');
+			currentPlayerPieces.forEach(p => p.classList.toggle('player-1'));
+
+			UpdateScore();
+
+			gameState.push(GetGameState());
+		}
+
+		tiles.forEach(t => t.addEventListener('click', MakeMove))
+		document.querySelector('#btn_turn-complete').addEventListener('click', SwitchTurn);
+		document.querySelector('#btn_undo').addEventListener('click', UndoMove);
+
+		InitBoard();
+    }
+};
+
+function UpdateScore() {
+	const player1score = document.querySelectorAll('#board .player-1').length;
+	const player1scoreItems = document.querySelectorAll('.player-1-score');
+	player1scoreItems.forEach(s => s.innerHTML = player1score);
+
+	const player2score = document.querySelectorAll('#board .player-2').length;
+	const player2scoreItems = document.querySelectorAll('.player-2-score');
+	player2scoreItems.forEach(s => s.innerHTML = player2score);
+}
+
+function SwitchTurn() {
+	player1 = !player1;
+	const currentPlayerPieces = document.querySelectorAll('.current-player');
+	currentPlayerPieces.forEach(p => p.classList.toggle('player-1'));
+	currentPlayerPieces.forEach(p => p.classList.toggle('player-2'));
+
+	UpdateScore();
+
+	gameState.push(GetGameState());
+}
+
+
+function GetGameState() {
+
+	function getPlayer1Tiles() {
+		return [...document.querySelectorAll('.tile.player-1')];//.map(tile => tile.id);
+	}
+
+	function getPlayer2Tiles() {
+		return [...document.querySelectorAll('.tile.player-2')];//.map(tile => tile.id);
+	}
+
+	var publicAPI = {
+		player1tiles: getPlayer1Tiles(),
+		player2tiles: getPlayer2Tiles()
+	};
+
+	return publicAPI;
+}
+
+function ApplyGameState(index) {
+	//todo: updates the dom to the game state of the given index
+	//clear game state after given index OR create new game state, branch at given index
+	const currentTiles = [...document.querySelectorAll('.tile')];
+	const newGameState = gameState[index];
+
+	currentTiles.forEach(tile => {
+		if (newGameState.player1tiles.some(p1tile => p1tile.id === tile.id)) {
+			if (!tile.classList.contains('player-1')) {
+				tile.classList.add('player-1');
+			}
+
+			if (tile.classList.contains('player-2')) {
+				tile.classList.remove('player-2');
+			}
+		} else if (newGameState.player2tiles.some(p2tile => p2tile.id === tile.id)) {
+			if (!tile.classList.contains('player-2')) {
+				tile.classList.add('player-2');
+			}
+
+			if (tile.classList.contains('player-1')) {
+				tile.classList.remove('player-1');
+			}
+		} else {
+			if (tile.classList.contains('player-1')) {
+				tile.classList.remove('player-1');
+			}
+
+			if (tile.classList.contains('player-2')) {
+				tile.classList.remove('player-2');
+			}
+		}
+	});
+
+	if (index > 0) {
+		gameState.splice(index);
+	}
+}
+
+function UndoMove() {
+	ApplyGameState(gameState.length - 1);
+}
+
+var gameState = [];
+
+</script>
+
+<h1>Othello/Reversi</h1>
+
+<div class="panels">
+
+<div class="panel panel1">
+	Current player:
+	<div class="current-player"><div class='piece'></div></div>
+	<input id="btn_turn-complete" type="button" value="Turn complete.">
+	</input>
+	<input id="btn_undo" type="button" value="Undo.">
+	</input>
+</div>
+
+<div class="panel panel2">
+	<table id="board">
+		<tr class="row1">
+			<td id="tile1" class="tile col1">
+				<div class="piece"/>
+			</td>
+			<td id="tile2" class="tile col2">
+				<div class="piece"/>
+			</td>
+			<td id="tile3" class="tile col3">
+				<div class="piece"/>
+			</td>
+			<td id="tile4" class="tile col4">
+				<div class="piece"/>
+			</td>
+			<td id="tile5" class="tile col5">
+				<div class="piece"/>
+			</td>
+			<td id="tile6" class="tile col6">
+				<div class="piece"/>
+			</td>
+			<td id="tile7" class="tile col7">
+				<div class="piece"/>
+			</td>
+			<td id="tile8" class="tile col8">
+				<div class="piece"/>
+			</td>
+		</tr>
+		<tr class="row2">
+			<td id="tile9" class="tile col1">
+				<div class="piece"/>
+			</td>
+			<td id="tile10" class="tile col2">
+				<div class="piece"/>
+			</td>
+			<td id="tile11" class="tile col3">
+				<div class="piece"/>
+			</td>
+			<td id="tile12" class="tile col4">
+				<div class="piece"/>
+			</td>
+			<td id="tile13" class="tile col5">
+				<div class="piece"/>
+			</td>
+			<td id="tile14" class="tile col6">
+				<div class="piece"/>
+			</td>
+			<td id="tile15" class="tile col7">
+				<div class="piece"/>
+			</td>
+			<td id="tile16" class="tile col8">
+				<div class="piece"/>
+			</td>
+		</tr>
+		<tr class="row3">
+			<td id="tile17" class="tile col1">
+				<div class="piece"/>
+			</td>
+			<td id="tile18" class="tile col2">
+				<div class="piece"/>
+			</td>
+			<td id="tile19" class="tile col3">
+				<div class="piece"/>
+			</td>
+			<td id="tile20" class="tile col4">
+				<div class="piece"/>
+			</td>
+			<td id="tile21" class="tile col5">
+				<div class="piece"/>
+			</td>
+			<td id="tile22" class="tile col6">
+				<div class="piece"/>
+			</td>
+			<td id="tile23" class="tile col7">
+				<div class="piece"/>
+			</td>
+			<td id="tile24" class="tile col8">
+				<div class="piece"/>
+			</td>
+		</tr>
+		<tr class="row4">
+			<td id="tile25" class="tile col1">
+				<div class="piece"/>
+			</td>
+			<td id="tile26" class="tile col2">
+				<div class="piece"/>
+			</td>
+			<td id="tile27" class="tile col3">
+				<div class="piece"/>
+			</td>
+			<td id="tile28" class="tile col4">
+				<div class="piece"/>
+			</td>
+			<td id="tile29" class="tile col5">
+				<div class="piece"/>
+			</td>
+			<td id="tile30" class="tile col6">
+				<div class="piece"/>
+			</td>
+			<td id="tile31" class="tile col7">
+				<div class="piece"/>
+			</td>
+			<td id="tile32" class="tile col8">
+				<div class="piece"/>
+			</td>
+		</tr>
+		<tr class="row5">
+			<td id="tile33" class="tile col1">
+				<div class="piece"/>
+			</td>
+			<td id="tile34" class="tile col2">
+				<div class="piece"/>
+			</td>
+			<td id="tile35" class="tile col3">
+				<div class="piece"/>
+			</td>
+			<td id="tile36" class="tile col4">
+				<div class="piece"/>
+			</td>
+			<td id="tile37" class="tile col5">
+				<div class="piece"/>
+			</td>
+			<td id="tile38" class="tile col6">
+				<div class="piece"/>
+			</td>
+			<td id="tile39" class="tile col7">
+				<div class="piece"/>
+			</td>
+			<td id="tile40" class="tile col8">
+				<div class="piece"/>
+			</td>
+		</tr>
+		<tr class="row6">
+			<td id="tile41" class="tile col1">
+				<div class="piece"/>
+			</td>
+			<td id="tile42" class="tile col2">
+				<div class="piece"/>
+			</td>
+			<td id="tile43" class="tile col3">
+				<div class="piece"/>
+			</td>
+			<td id="tile44" class="tile col4">
+				<div class="piece"/>
+			</td>
+			<td id="tile45" class="tile col5">
+				<div class="piece"/>
+			</td>
+			<td id="tile46" class="tile col6">
+				<div class="piece"/>
+			</td>
+			<td id="tile47" class="tile col7">
+				<div class="piece"/>
+			</td>
+			<td id="tile48" class="tile col8">
+				<div class="piece"/>
+			</td>
+		</tr>
+		<tr class="row7">
+			<td id="tile49" class="tile col1">
+				<div class="piece"/>
+			</td>
+			<td id="tile50" class="tile col2">
+				<div class="piece"/>
+			</td>
+			<td id="tile51" class="tile col3">
+				<div class="piece"/>
+			</td>
+			<td id="tile52" class="tile col4">
+				<div class="piece"/>
+			</td>
+			<td id="tile53" class="tile col5">
+				<div class="piece"/>
+			</td>
+			<td id="tile54" class="tile col6">
+				<div class="piece"/>
+			</td>
+			<td id="tile55" class="tile col7">
+				<div class="piece"/>
+			</td>
+			<td id="tile56" class="tile col8">
+				<div class="piece"/>
+			</td>
+		</tr>
+		<tr class="row8">
+			<td id="tile57" class="tile col1">
+				<div class="piece"/>
+			</td>
+			<td id="tile58" class="tile col2">
+				<div class="piece"/>
+			</td>
+			<td id="tile59" class="tile col3">
+				<div class="piece"/>
+			</td>
+			<td id="tile60" class="tile col4">
+				<div class="piece"/>
+			</td>
+			<td id="tile61" class="tile col5">
+				<div class="piece"/>
+			</td>
+			<td id="tile62" class="tile col6">
+				<div class="piece"/>
+			</td>
+			<td id="tile63" class="tile col7">
+				<div class="piece"/>
+			</td>
+			<td id="tile64" class="tile col8">
+				<div class="piece"/>
+			</td>
+		</tr>
+	</table>
+</div>
+
+<div class="panel panel3">
+
+<table class="score-board">
+	<tr>
+		<td><span contenteditable="true">Player 1</span>:</td>
+		<td><span contenteditable="true">Player 2</span>:</td>
+	</tr>
+	<tr>
+		<td class="player-1-score"></td>
+		<td class="player-2-score"></td>
+	</tr>
+</table>
+</div>
+
+</div>
+
+<div id="instructions">
+<h3>Gameplay:</h3>
+
+<p>Goal: have the most pieces of your color at the end of the game.</p>
+
+<p>The two sides of each disk are a different color (one color for each player).</p>
+
+<p>On your turn, lay a disk with your color facing up, in a position where disks of the opposing color are contained between the newly laid disk and a previously laid disk of your color. This can be horizontal, vertical, or diagonal.</p>
+
+<p>All disks of the opposing color that are bounded between the newly laid piece of the current player and a previously laid piece of the current player are flipped so that the current player's color is face up. If this cannot be done, then you must pass.</p>
+
+<p>See the <a href="https://en.wikipedia.org/wiki/Reversi#Rules">Rules</a> on Wikipedia for more detailed instructions on how to play.</p>
+
+</div>
+
+<div>
+<input type="button" value="Restart Game" />
+</div>
+</body>
+</html>
