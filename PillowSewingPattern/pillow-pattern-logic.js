@@ -17,7 +17,6 @@ function GetData()
 
 	// Based on style, will get different things here
 	var topFlapWidth = document.querySelector('#pillow-top-flap').value;
-	var bottomFlapWidth = document.querySelector('#pillow-bottom-flap').value;
 	var flapOverlap = document.querySelector('#pillow-flap-overlap').value;
 	var flapHemStyle = document.querySelector('#pillow-flap-hem-style').value;
 	var flapHemSize = document.querySelector('#pillow-flap-hem-size').value;
@@ -29,7 +28,7 @@ function GetData()
 		seamStyle: seamStyle,
 		caseStyle: caseStyle,
 		topFlapWidth: Number(topFlapWidth),
-		bottomFlapWidth: Number(bottomFlapWidth),
+		bottomFlapWidth: Number(width) - Number(topFlapWidth) + Number(flapOverlap),
 		flapOverlap: Number(flapOverlap),
 		flapHemStyle: flapHemStyle,
 		flapHemSize: Number(flapHemSize)
@@ -79,8 +78,7 @@ function caseFabricWidth()
 	return PatternData.width
 			+ PatternData.topFlapWidth
 			+ PatternData.bottomFlapWidth
-			+ 2 * hem
-			+ 2 * PatternData.flapOverlap;
+			+ 2 * hem;
 }
 
 function UpdateOutput()
