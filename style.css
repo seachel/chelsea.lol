@@ -1,4 +1,5 @@
-body {
+body
+{
 	/*font-family: 'Arsenal', sans-serif;*/
 	font-family: 'Slabo 27px', serif;
 	/*font-family: 'Playfair Display', serif;*/
@@ -7,13 +8,21 @@ body {
 	margin: 0px;
 }
 
-.head-normal {
+figcaption
+{
+	font-size: 12px;
+	text-align: center;
+}
+
+.head-normal
+{
 	font-family: 'Lobster Two', cursive;
 	font-weight: normal;
 	text-align: center;
 }
 
-.head-retro {
+.head-retro
+{
 	font-family: 'Kranky', cursive;
 	/*font-family: 'Vast Shadow', cursive;*/
 	/*font-family: 'Life Savers', cursive;*/
@@ -25,7 +34,8 @@ body {
 	text-align: center;
 }
 
-.old {
+.old
+{
 	/*font-family: 'VT323', monospace;*/
 	/*font-family: 'Open Sans', sans-serif;*/
 	/*font-family: 'Arsenal', sans-serif;*/
@@ -35,7 +45,8 @@ body {
 	/*font-family: 'Cousine', monospace;*/
 }
 
-.container {
+.container
+{
 	max-width: 700px;
 	margin-left: auto;
 	margin-right: auto;
@@ -43,7 +54,8 @@ body {
 	padding: 20px;
 }
 
-.container img {
+.container img
+{
 	width: 40%;
 	height: auto;
 	display: block;
@@ -52,26 +64,31 @@ body {
 	padding: 10px;
 }
 
-.container img.feature-photo {
+.container img.feature-photo
+{
 	width: 80%;
 }
 
-.note {
+.note
+{
 	font-size: 10pt;
 }
 
-#music-note-main {
+#music-note-main
+{
 	width: 40px;
 	height: 40px;
 }
 
-.curry {
+.curry
+{
 	background-image: url("Resources/Images/curry_background.jpg");
 	background-repeat: repeat;
 	background-size: 100px auto;
 }
 
-button#play-main-music {
+button#play-main-music
+{
 	border: 0;
 	background: transparent;
 }
