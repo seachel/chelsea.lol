@@ -45,6 +45,11 @@ figcaption
 	/*font-family: 'Cousine', monospace;*/
 }
 
+.hidden
+{
+	display: none;
+}
+
 .container
 {
 	max-width: 700px;
