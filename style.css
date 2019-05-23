@@ -98,3 +98,21 @@ button#play-main-music
 	border: 0;
 	background: transparent;
 }
+
+.row-center
+{
+	display: flex;
+	justify-content: center;
+}
+
+.column-center
+{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.social img
+{
+	width: 30px;
+}
