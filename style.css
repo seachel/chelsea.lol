@@ -116,3 +116,11 @@ button#play-main-music
 {
 	width: 30px;
 }
+
+.date
+{
+	padding-top: 30px;
+	font-size: 12pt;
+	display: flex;
+	justify-content: center;
+}
