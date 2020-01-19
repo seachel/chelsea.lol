@@ -13,7 +13,7 @@ if (this.readyState == 4 && this.status == 200)
 	{
 		var lastUpdated = new Date(repo.updated_at);
 		var day = lastUpdated.getUTCDate();
-		var month = lastUpdated.getUTCMonth();
+		var month = lastUpdated.getUTCMonth() + 1;
 		var year = lastUpdated.getUTCFullYear();
 		$(dateTagClass).text(`Updated ${year}-${month}-${day}`);
 	}
