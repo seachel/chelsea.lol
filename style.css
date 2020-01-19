@@ -57,7 +57,7 @@ figcaption
 	margin-left: auto;
 	margin-right: auto;
 	background-color: white;
-	padding: 20px;
+	padding: 5px;
 }
 
 .container img
@@ -78,6 +78,16 @@ figcaption
 .note
 {
 	font-size: 10pt;
+}
+
+.project-title
+{
+	font-weight: bold;
+}
+
+#project-list > li
+{
+	padding: 20px 0px;
 }
 
 #music-note-main
