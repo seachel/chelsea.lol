@@ -14,11 +14,17 @@ figcaption
 	text-align: center;
 }
 
+#head-region
+{
+	padding: 20px 0;
+}
+
 .head-normal
 {
 	font-family: 'Lobster Two', cursive;
 	font-weight: normal;
 	text-align: center;
+	font-size: 60px;
 }
 
 .head-retro
